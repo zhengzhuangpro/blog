@@ -7,6 +7,18 @@ Individuals just prefer to research technology, share technology, record their l
 
 个人只是比较喜欢研究技术，分享技术，记录自己学习的瞬间，立志让自己的技术得到更全面的升级，我一直在路上。
 
+## Vercel 部署
+
+本项目已配置好 Vercel 构建：
+
+1. 安装依赖：`pnpm install`
+2. 本地验证构建：`pnpm run vercel:build`
+3. 推送到 Git 仓库后，在 Vercel 导入该仓库即可自动部署
+
+关键配置：
+- `vercel.json`
+- `scripts/vercel-build.sh`
+
 # 专栏
 From here you can find all my blog links
 

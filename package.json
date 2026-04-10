@@ -5,8 +5,10 @@
   "scripts": {
     "mintlify:sync": "node scripts/generate-docs-json.mjs",
     "dev": "pnpm run mintlify:sync && mintlify dev",
-    "build": "pnpm run mintlify:sync && mintlify build",
-    "check-links": "pnpm run mintlify:sync && mintlify check-links"
+    "build": "pnpm run mintlify:sync && mintlify validate",
+    "check-links": "pnpm run mintlify:sync && mintlify broken-links",
+    "export": "pnpm run mintlify:sync && mintlify export --output export.zip",
+    "vercel:build": "bash scripts/vercel-build.sh"
   },
   "keywords": [],
   "author": "zhengzhuang",
