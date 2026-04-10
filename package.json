@@ -12,5 +12,8 @@
   },
   "keywords": [],
   "author": "zhengzhuang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mintlify": "^4.2.504"
+  }
 }
