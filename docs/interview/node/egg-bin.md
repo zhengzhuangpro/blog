@@ -1,3 +1,7 @@
+---
+title: egg-bin
+---
+
 
 在初始化的 egg 项目 `package.json` 中可以看到:
 ```js

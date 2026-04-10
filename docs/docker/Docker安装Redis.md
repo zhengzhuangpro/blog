@@ -1,3 +1,7 @@
+---
+title: Docker安装Redis
+---
+
 # Docker 安装 Redis
 
 ##### 查看可用的 Redis 版本

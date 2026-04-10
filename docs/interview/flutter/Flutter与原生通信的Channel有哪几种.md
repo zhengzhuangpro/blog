@@ -1,3 +1,7 @@
+---
+title: Flutter与原生通信的Channel有哪几种
+---
+
 #
 
 Flutter 定义了三种不同类型的 Channel，它们分别是：

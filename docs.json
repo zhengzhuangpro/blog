@@ -1,0 +1,373 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "北关尔士",
+  "description": "记录我生活的点点积极",
+  "theme": "mint",
+  "colors": {
+    "primary": "#0077B6",
+    "light": "#00B4D8",
+    "dark": "#023E8A"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "文档",
+        "groups": [
+          {
+            "group": "全部文档",
+            "pages": [
+              "docs/index",
+              {
+                "group": "前端",
+                "pages": [
+                  "docs/frontend/index",
+                  {
+                    "group": "工程化",
+                    "pages": [
+                      "docs/frontend/工程化/打造一款企业级cli脚手架",
+                      "docs/frontend/工程化/eslint规范校验",
+                      "docs/frontend/工程化/package.json中版本号前面~和^的区别"
+                    ]
+                  },
+                  {
+                    "group": "团队建设",
+                    "pages": [
+                      "docs/frontend/团队建设/前端基础设施建设"
+                    ]
+                  },
+                  {
+                    "group": "组件库",
+                    "pages": [
+                      "docs/frontend/组件库/打造vue3组件库"
+                    ]
+                  },
+                  {
+                    "group": "npm",
+                    "pages": [
+                      "docs/frontend/npm/发布npm包到官方仓库",
+                      "docs/frontend/npm/将npm包发布在私有仓库（nexus）中",
+                      "docs/frontend/npm/使用Nexus搭建npm私服",
+                      "docs/frontend/npm/mddir项目结构生成包",
+                      "docs/frontend/npm/npm指令集"
+                    ]
+                  },
+                  {
+                    "group": "pnpm",
+                    "pages": [
+                      "docs/frontend/pnpm/pnpm基础"
+                    ]
+                  },
+                  {
+                    "group": "rollup",
+                    "pages": [
+                      "docs/frontend/rollup/rollup打包问题"
+                    ]
+                  },
+                  {
+                    "group": "webpack",
+                    "pages": [
+                      "docs/frontend/webpack/webpack5升级",
+                      "docs/frontend/webpack/webpack优化实战md"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Egg",
+                "pages": [
+                  "docs/egg/index",
+                  "docs/egg/生成接口文档egg-swagger-doc",
+                  "docs/egg/egg定时任务",
+                  "docs/egg/egg基础",
+                  "docs/egg/egg中间件"
+                ]
+              },
+              {
+                "group": "Flutter",
+                "pages": [
+                  "docs/flutter/index",
+                  "docs/flutter/flutter_fluro",
+                  "docs/flutter/flutter_mqtt",
+                  "docs/flutter/Flutter-常用库及时使用入门级方法-一些经常用到的的副本",
+                  "docs/flutter/Flutter-原生路由",
+                  "docs/flutter/flutter常见问题",
+                  "docs/flutter/Flutter创建插件详解并发布到Pub库",
+                  "docs/flutter/flutter实用方法",
+                  "docs/flutter/fvm"
+                ]
+              },
+              {
+                "group": "Docker",
+                "pages": [
+                  "docs/docker/index",
+                  "docs/docker/Docker安装MySQL",
+                  "docs/docker/docker安装nginx",
+                  "docs/docker/Docker安装Redis",
+                  "docs/docker/docker常用命令"
+                ]
+              },
+              {
+                "group": "Android",
+                "pages": [
+                  "docs/android/index",
+                  "docs/android/安卓打包icon及其启动页图片大小",
+                  "docs/android/Ubuntu下安装AndroidStudio"
+                ]
+              },
+              {
+                "group": "Git",
+                "pages": [
+                  "docs/git/index",
+                  "docs/git/如何把分支代码合并到master主分支上",
+                  "docs/git/新版git提交到github",
+                  "docs/git/git入门学习",
+                  "docs/git/git提交规范",
+                  "docs/git/Git提交注释使用表情指北"
+                ]
+              },
+              {
+                "group": "Go",
+                "pages": [
+                  {
+                    "group": "gin",
+                    "pages": [
+                      "docs/go/gin/index",
+                      "docs/go/gin/gin数据解析和解绑"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "高效开发环境",
+                "pages": [
+                  "docs/computer/index",
+                  "docs/computer/视频流",
+                  "docs/computer/MAC上安装brew方式及使用技巧",
+                  "docs/computer/Mac下修改hosts 解决访问github慢的问题",
+                  "docs/computer/mac下docker安装kenkins"
+                ]
+              },
+              {
+                "group": "数据库",
+                "pages": [
+                  "docs/mysql/index",
+                  "docs/mysql/Mac下使用 brew 安装mysql",
+                  "docs/mysql/mysql 基础操作"
+                ]
+              },
+              {
+                "group": "面试",
+                "pages": [
+                  "docs/interview/index",
+                  {
+                    "group": "工程化",
+                    "pages": [
+                      "docs/interview/工程化/index",
+                      "docs/interview/工程化/常见的shell脚本",
+                      "docs/interview/工程化/模块化机制",
+                      "docs/interview/工程化/微前端",
+                      "docs/interview/工程化/babel原理",
+                      "docs/interview/工程化/cicd",
+                      "docs/interview/工程化/jest",
+                      "docs/interview/工程化/rollup.config",
+                      "docs/interview/工程化/Tree-Shaking实现原理",
+                      "docs/interview/工程化/tree-shaking原理",
+                      "docs/interview/工程化/tsconfig",
+                      "docs/interview/工程化/uglify原理",
+                      "docs/interview/工程化/webpack loader机制",
+                      "docs/interview/工程化/webpack插件机制",
+                      "docs/interview/工程化/webpack工作流程",
+                      "docs/interview/工程化/weebpack"
+                    ]
+                  },
+                  {
+                    "group": "手写题",
+                    "pages": [
+                      "docs/interview/手写题/index",
+                      "docs/interview/手写题/查找对象路径",
+                      "docs/interview/手写题/反转链表",
+                      "docs/interview/手写题/反转ul",
+                      "docs/interview/手写题/函数缓存",
+                      "docs/interview/手写题/函数柯里化",
+                      "docs/interview/手写题/记录",
+                      "docs/interview/手写题/冒泡排序",
+                      "docs/interview/手写题/实现原生的AJAX请求",
+                      "docs/interview/手写题/手写防抖和节流",
+                      "docs/interview/手写题/统计数组中值的出现次数",
+                      "docs/interview/手写题/整数反转",
+                      "docs/interview/手写题/JavaScript经典手写题",
+                      {
+                        "group": "数组",
+                        "pages": [
+                          "docs/interview/手写题/数组/全排列"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "性能方面",
+                    "pages": [
+                      "docs/interview/性能方面/index",
+                      "docs/interview/性能方面/白屏",
+                      "docs/interview/性能方面/从浏览器输入到页面展示的过程",
+                      "docs/interview/性能方面/大量图片加载优化",
+                      "docs/interview/性能方面/动画性能",
+                      "docs/interview/性能方面/内存泄漏",
+                      "docs/interview/性能方面/前端性能优化手段",
+                      "docs/interview/性能方面/图片优化手段",
+                      "docs/interview/性能方面/性能计算",
+                      "docs/interview/性能方面/性能指标",
+                      "docs/interview/性能方面/渲染合成层",
+                      "docs/interview/性能方面/重排和重绘",
+                      "docs/interview/性能方面/webp"
+                    ]
+                  },
+                  {
+                    "group": "css",
+                    "pages": [
+                      "docs/interview/css/index",
+                      "docs/interview/css/盒模型",
+                      "docs/interview/css/重绘和重排",
+                      "docs/interview/css/BFC",
+                      "docs/interview/css/css",
+                      "docs/interview/css/CSS选择器及其优先级",
+                      "docs/interview/css/link和@import的区别"
+                    ]
+                  },
+                  {
+                    "group": "flutter",
+                    "pages": [
+                      "docs/interview/flutter/index",
+                      "docs/interview/flutter/简述Widget的StatelessWidget和StatefulWidget两种状态组件类",
+                      "docs/interview/flutter/flutter基础面试题",
+                      "docs/interview/flutter/flutter生命周期",
+                      "docs/interview/flutter/Flutter与原生通信的Channel有哪几种"
+                    ]
+                  },
+                  {
+                    "group": "html",
+                    "pages": [
+                      "docs/interview/html/index",
+                      "docs/interview/html/行内元素与块级元素的区别",
+                      "docs/interview/html/DOCTYPE 的作用，标准模式与怪异模式的区别",
+                      "docs/interview/html/HTML5的离线储存，工作原理"
+                    ]
+                  },
+                  {
+                    "group": "http",
+                    "pages": [
+                      "docs/interview/http/index",
+                      "docs/interview/http/从url输入到页面显示会有哪些步骤",
+                      "docs/interview/http/缓存",
+                      "docs/interview/http/跨域",
+                      "docs/interview/http/前端安全",
+                      "docs/interview/http/网络",
+                      "docs/interview/http/TCP三次握手和四次挥手"
+                    ]
+                  },
+                  {
+                    "group": "JavaScript基础",
+                    "pages": [
+                      "docs/interview/JavaScript基础/index",
+                      "docs/interview/JavaScript基础/常用的设计模式",
+                      "docs/interview/JavaScript基础/关于原型的题目",
+                      "docs/interview/JavaScript基础/基础题",
+                      "docs/interview/JavaScript基础/模块化机制",
+                      "docs/interview/JavaScript基础/普通函数和箭头函数的区别",
+                      "docs/interview/JavaScript基础/强缓存与协商缓存",
+                      "docs/interview/JavaScript基础/深拷贝浅拷贝的区别以及如何实现一个深拷贝",
+                      "docs/interview/JavaScript基础/数组",
+                      "docs/interview/JavaScript基础/数组的常用方法",
+                      "docs/interview/JavaScript基础/说说对作用域链的理解",
+                      "docs/interview/JavaScript基础/说说你对闭包的理解以及闭包使用场景",
+                      "docs/interview/JavaScript基础/微前端",
+                      "docs/interview/JavaScript基础/移动端问题",
+                      "docs/interview/JavaScript基础/babel原理",
+                      "docs/interview/JavaScript基础/bind、call、apply区别",
+                      "docs/interview/JavaScript基础/es6新特性",
+                      "docs/interview/JavaScript基础/eslint校验",
+                      "docs/interview/JavaScript基础/eventloop",
+                      "docs/interview/JavaScript基础/Javascript实现继承",
+                      "docs/interview/JavaScript基础/JavaScript原型,原型链,有什么特点",
+                      "docs/interview/JavaScript基础/jest",
+                      "docs/interview/JavaScript基础/js箭头函数和普通函数区别",
+                      "docs/interview/JavaScript基础/new操作符",
+                      "docs/interview/JavaScript基础/promise问题",
+                      "docs/interview/JavaScript基础/this对象的理解",
+                      "docs/interview/JavaScript基础/tree-shaking原理",
+                      "docs/interview/JavaScript基础/typeof与instanceof区别",
+                      "docs/interview/JavaScript基础/uglify原理",
+                      "docs/interview/JavaScript基础/var",
+                      "docs/interview/JavaScript基础/WebSocket"
+                    ]
+                  },
+                  {
+                    "group": "node",
+                    "pages": [
+                      "docs/interview/node/index",
+                      "docs/interview/node/进程守护",
+                      "docs/interview/node/进程通信",
+                      "docs/interview/node/流机制",
+                      "docs/interview/node/模块机制",
+                      "docs/interview/node/事件循环",
+                      "docs/interview/node/异常处理",
+                      "docs/interview/node/cluster原理",
+                      "docs/interview/node/egg-bin",
+                      "docs/interview/node/egg-cluster",
+                      "docs/interview/node/pipe原理",
+                      "docs/interview/node/require原理"
+                    ]
+                  },
+                  {
+                    "group": "react",
+                    "pages": [
+                      "docs/interview/react/index",
+                      "docs/interview/react/常用设计模式",
+                      "docs/interview/react/错误处理",
+                      "docs/interview/react/高阶组件",
+                      "docs/interview/react/合成事件",
+                      "docs/interview/react/生命周期",
+                      "docs/interview/react/虚拟DOM",
+                      "docs/interview/react/组件间的通信方式",
+                      "docs/interview/react/fiber",
+                      "docs/interview/react/hooks 和vue响应式对比",
+                      "docs/interview/react/hooks生命周期",
+                      "docs/interview/react/hooks优缺点",
+                      "docs/interview/react/jsx原理",
+                      "docs/interview/react/memo 和 useMemo",
+                      "docs/interview/react/MVC,MVVM,MVP",
+                      "docs/interview/react/React16,17,18",
+                      "docs/interview/react/redux原理",
+                      "docs/interview/react/setState过程",
+                      "docs/interview/react/Suspense",
+                      "docs/interview/react/useLayoutEffect"
+                    ]
+                  },
+                  {
+                    "group": "vue",
+                    "pages": [
+                      "docs/interview/vue/index",
+                      "docs/interview/vue/组建间的通信",
+                      "docs/interview/vue/vue创建企业级项目",
+                      "docs/interview/vue/vue实现双向数据绑定原理是什么",
+                      "docs/interview/vue/vuex"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "错误集",
+                "pages": [
+                  "docs/错误集/inquirer报错Error"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "github": "https://github.com/zhengzhuang96"
+  }
+}

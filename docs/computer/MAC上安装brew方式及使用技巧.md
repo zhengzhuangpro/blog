@@ -5,8 +5,6 @@ tags:
 categories: mac
 ---
 
-# MAC上安装brew方式及使用技巧
-
 **brew**是**Mac**下的一个包管理工具，可以简化**MacOS**系统上软件的安装，作用类是**centos**下的**yum**。
 
 **brew**既可以安装包管理工具，还可以安装软件，我的**vs Code**就是**brew**安装的啦
@@ -20,7 +18,7 @@ $ whick ruby
 $ ruby --version
 ```
 
-<img width="565" alt="image-20210526091550956" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h45cncatw8j20ve04gjrq.jpg">
+<img width="565" alt="image-20210526091550956" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h45cncatw8j20ve04gjrq.jpg" />
 
 #### 2. 安装
 
@@ -39,7 +37,7 @@ $ brew --version    // 测试是否已安装成功
 $ which brew    // 安装成功则显示路径
 ```
 
-<img width="600" alt="image-20210526092134873" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h45cnel52dj20xc07amy0.jpg">
+<img width="600" alt="image-20210526092134873" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h45cnel52dj20xc07amy0.jpg" />
 
 #### 4. brew基本用法
 
@@ -55,7 +53,7 @@ $ brew install nodejs
 
 然后等待安装就行了，安装成功之后输入命令查看，nodejs的最新版本就被安装成功啦
 
-<img width="165" alt="image-20210526092536599" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h45cnggyryj2096026wec.jpg">
+<img width="165" alt="image-20210526092536599" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h45cnggyryj2096026wec.jpg" />
 
 > 当然我这里习惯先安装nvm管理node，brew先安装nvm，用nvm来进行安装和管理node版本
 

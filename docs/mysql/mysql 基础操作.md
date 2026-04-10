@@ -1,4 +1,6 @@
-# mysql 基础操作
+---
+title: mysql 基础操作
+---
 
 ### mysql 命令行
 

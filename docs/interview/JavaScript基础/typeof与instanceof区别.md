@@ -1,3 +1,7 @@
+---
+title: typeof与instanceof区别
+---
+
 # typeof 与 instanceof 区别
 
 ## 一、typeof

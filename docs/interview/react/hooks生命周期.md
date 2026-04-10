@@ -1,3 +1,7 @@
+---
+title: hooks生命周期
+---
+
 useState 只在初始化时执行一次，后面不再执行；
 
 useEffect 相当于是 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合，可以通过传参及其他逻辑，分别模拟这三个生命周期函数

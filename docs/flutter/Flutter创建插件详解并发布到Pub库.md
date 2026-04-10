@@ -66,10 +66,10 @@ flutter packages pub publish --server=https://pub.dartlang.org
 
 等待上传会很慢，这里要是一只卡住，说明你的终端没有翻墙成功<br />
 
-<img width="1083px" alt="image-20200331145609390" src="https://user-images.githubusercontent.com/29434858/78006411-92391500-736f-11ea-89e2-b7ad723fabe7.png">
+<img width="1083px" alt="image-20200331145609390" src="https://user-images.githubusercontent.com/29434858/78006411-92391500-736f-11ea-89e2-b7ad723fabe7.png" />
 
 等一切上传之后出现`Successfully uploaded package.`证明上传成功<br />
-<img width="356" alt="image-20200331163516059" src="https://user-images.githubusercontent.com/29434858/78006386-877e8000-736f-11ea-8166-06afaf1e40db.png">
+<img width="356" alt="image-20200331163516059" src="https://user-images.githubusercontent.com/29434858/78006386-877e8000-736f-11ea-8166-06afaf1e40db.png" />
 
 当你上传成功之后，在`https://pub.flutter-io.cn/`中不能瞬间出现的，需要大约等 20 分钟时到 1 小时左右，才能搜索到，其实上传成功之后就不用等待了，直接可以在项目中使用
 

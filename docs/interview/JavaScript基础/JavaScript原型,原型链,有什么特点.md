@@ -1,3 +1,7 @@
+---
+title: JavaScript原型,原型链,有什么特点
+---
+
 # JavaScript 原型,原型链,有什么特点
 
 ## 一、原型

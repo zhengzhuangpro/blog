@@ -1,3 +1,7 @@
+---
+title: MVC,MVVM,MVP
+---
+
 https://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
 
 mvc： 用户操作 => view 负责收集集体用户输入 => controller 逻辑处理 => model 数据持久化 =》 view 视图渲染

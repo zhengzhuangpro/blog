@@ -1,3 +1,7 @@
+---
+title: hooks 和vue响应式对比
+---
+
 React Hook 和 Vue Hook 对比
 
 1. 首先底层设计的架构原理不同，vue3 仍然是mvvm的模型采用object.proxy实现数据的劫持和发布订阅者模式实现的数据双向绑定。

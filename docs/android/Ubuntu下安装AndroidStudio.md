@@ -1,4 +1,6 @@
-# Ubuntu下安装AndroidStudio
+---
+title: Ubuntu下安装AndroidStudio
+---
 
 # 写在前面
 
@@ -31,7 +33,7 @@ sudo apt-get install oracle-java8-installer
 
 输入：
 
-​    java -version
+    java -version
 
 ![5](https://tva1.sinaimg.cn/large/e6c9d24ely1h45c95rwgdj20ke0dqgmk.jpg)
 

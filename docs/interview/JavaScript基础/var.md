@@ -1,3 +1,8 @@
+---
+title: var
+---
+
+```js
 function test1(){
     let total = 0,res = []
     var i = 0 // 这里改成let呢？结果一样吗？
@@ -12,12 +17,14 @@ function test1(){
    console.log(res[2]()) // 9
     // 怎样改才能输出0/1/3？
 }
+```
 
 如何打印出 0，1，3  
 
 答案：变成闭包
 
 
+```js
 function test1(){
     let total = 0,res = []
     let i = 0 // 这里改成let呢？结果一样吗？
@@ -32,8 +39,10 @@ function test1(){
    console.log(res[2]()) // 9
     // 怎样改才能输出0/1/3？
 }
+```
 
 
+```js
 var a = 1;
 function Fn1() {
     var a = 2;
@@ -52,3 +61,4 @@ Fn3.prototype = {
 }
 var fn3 = new Fn3();
 Fn1.call(fn3); // 5
+```

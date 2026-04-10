@@ -5,8 +5,6 @@ tags:
 categories: flutter
 ---
 
-# Flutter 实用方法
-
 #### flutter 更改状态栏字体颜色
 
 dark: 字体黑色

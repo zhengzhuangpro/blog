@@ -1,3 +1,7 @@
+---
+title: 常见的shell脚本
+---
+
 ```
 # 执行打包
 jdp p pro

@@ -1,3 +1,7 @@
+---
+title: redux原理
+---
+
 redux原理：https://juejin.cn/post/6844904036013965325?share_token=75bc1d6d-55bb-44a2-9ed7-aae4522a9ce2
 
 1. 既然是公共状态，那么就直接把公共状态提取出来好了。我们创建一个store.js文件，然后直接在里边存放公共的state，其他组件只要引入这个store就可以存取共用状态了。
@@ -52,7 +56,7 @@ Redux存在一个问题，就是无法实现异步的action,这也就是为什�
 换言之，中间件都是对store.dispatch()的增强
 
 applyMiddleware() 其实applyMiddleware就是Redux的一个原生方法，将所有中间件组成一个数组，依次执行。 中间件多了可以当做参数依次传进去
-   ​
+   
 ```js
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';

@@ -1,3 +1,8 @@
+---
+title: rollup.config
+---
+
+```js
 
 import typescript from '@rollup/plugin-typescript';
 import pkg from './package.json';
@@ -41,5 +46,6 @@ export default [
         },
         plugins,
         external,
-    },
+	},
 ];
+```

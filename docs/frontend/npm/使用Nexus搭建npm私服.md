@@ -1,4 +1,6 @@
-# 使用Nexus搭建npm私服
+---
+title: 使用Nexus搭建npm私服
+---
 
 搭建npm私服，我们使用nexus3
 

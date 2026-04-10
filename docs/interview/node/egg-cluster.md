@@ -1,3 +1,7 @@
+---
+title: egg-cluster
+---
+
 #### 承接上文
 在 **egg-bin** 模块解析一文结尾处，我们探索到 `npm run dev` 最终会 fork 一个子进程，执行 **start-cluster** 文件:
 ```js

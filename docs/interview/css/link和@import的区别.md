@@ -1,4 +1,6 @@
-# link和@import的区别
+---
+title: link和@import的区别
+---
 
 两者都是外部引用CSS的方式，它们的区别如下：
 

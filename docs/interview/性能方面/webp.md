@@ -1,3 +1,7 @@
+---
+title: webp
+---
+
 WebP 是由Google开发的一种新的图片格式，它支持有损压缩、无损压缩和透明度，压缩后的文件大小比JPEG、PNG等都要小
 WebP 的兼容性还不是很好，不过好在它兼容 Chrome，以及 Android 的 webview。 因为不是所有浏览器都支持 WebP 格式，为了解决问题，
 

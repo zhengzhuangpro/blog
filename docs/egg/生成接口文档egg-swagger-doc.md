@@ -1,4 +1,6 @@
-# 生成接口文档egg-swagger-doc
+---
+title: 生成接口文档egg-swagger-doc
+---
 
 #### egg-swagger-doc
 

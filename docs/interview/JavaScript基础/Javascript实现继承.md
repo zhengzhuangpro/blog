@@ -1,3 +1,7 @@
+---
+title: Javascript实现继承
+---
+
 # Javascript 实现继承
 
 继承（inheritance）是面向对象软件技术当中的一个概念。

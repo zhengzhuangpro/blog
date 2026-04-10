@@ -1,3 +1,7 @@
+---
+title: docker安装nginx
+---
+
 # Docker 安装 nginx
 
 ### 查看可用的版本

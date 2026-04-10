@@ -1,3 +1,8 @@
+---
+title: 首页
+description: 北关尔士 - 记录我生活的点点积极
+---
+
 # About Me
 Hello, I'm Zheng, born in 1996. I am a front-end development engineer.
 
@@ -14,8 +19,6 @@ From here you can find all my blog links
 
  - [github](https://github.com/zhengzhuang96)
  - [掘金](https://juejin.im/user/5a12900351882509e54348ac)
-
-
 
 ## 🎉 整理我平时关注并使用的前端库
 
@@ -64,33 +67,6 @@ From here you can find all my blog links
 * [Dart](https://dart.dev/)
 * [JavaScript](https://github.com/Microsoft/TypeScript)
 * [TypeScript](https://github.com/Microsoft/TypeScript)
-
-### 工程
-* [**lerna**](https://github.com/lerna/lerna) - monorepo 管理。
-* [**lerna-changelog**](https://github.com/lerna/lerna-changelog) - 为 lerna 项目自动生成 changelog。
-* [**eslint**](https://github.com/eslint/eslint) - JS 风格约束。
-* [**eslint-config-airbnb**](https://github.com/airbnb/javascript)
-* [**xo**](https://github.com/xojs/xo) - 封装自 eslint。
-* [**prettier**](https://github.com/prettier/prettier) - 更主观的风格自动修改。
-* [**yeoman-generator**](https://github.com/yeoman/generator) - 脚手架工具。
-* [**serve**](https://github.com/zeit/serve) - 本地静态服务器。
-* [**servor**](https://github.com/lukejacksonn/servor) - 另一个静态服务器。
-* [**budo**](https://github.com/mattdesl/budo) - 又一个静态服务器。
-* [**np**](https://github.com/sindresorhus/np) - npm publish 辅助，自动 push、打 tag、升版本等。
-* [**lint-staged**](https://github.com/okonet/lint-staged) - eslint 提速，只 lint 提交的代码。
-* [**coveralls**](https://github.com/marketplace/coveralls) - 覆盖率。
-* [**husky**](https://github.com/typicode/husky) - 添加 git hooks。
-* [**cross-env**](https://github.com/kentcdodds/cross-env) - 跨平台的环境变量声明。
-* [**projj**](https://github.com/popomore/projj) - 本地 git 项目管理，支持 github 和 gitlab。
-* [**nvm**](https://github.com/creationix/nvm) - 管理 node 版本。
-* [**concurrently**](https://github.com/kimmobrunfeldt/concurrently) - 在 npm scripts 里并行执行命令。
-* [**@zeit/ncc**](https://github.com/zeit/ncc) - 打包为 npm 包为一个文件。
-* [**npm-check**](https://github.com/dylang/npm-check) - 检测依赖升级情况，我会和 `yarn upgrade-interactive` 配合着用，主要用来检测冗余依赖。
-* [**cpx**](https://github.com/mysticatea/cpx) - 复制，支持 glob，并且可以 watch。
-* [**onchange**](https://github.com/Qard/onchange) - 监听文件变动然后做一些事。
-* [**just**](https://github.com/Microsoft/just) - 微软出的任务管理器。
-* [**tern**](https://github.com/ternjs/tern) - 代码分析器，为不少编辑器服务。
-* [**lightproxy**](https://github.com/alibaba/lightproxy) - 底层协议代理工具，跨平台。
 
 ### 编辑器
 * [VSCode](https://code.visualstudio.com/) - 我最喜欢的
@@ -200,7 +176,7 @@ From here you can find all my blog links
 
 ## 数据流
 
-- [**dva**](https://github.com/dvajs/dva) - 我写的数据流，基于 redux。
+- [**dva**](https://github.com/dvajs/dva) - 数据流，基于 redux。
 - [**jotai**](https://github.com/pmndrs/jotai)
 - [**immer**](https://github.com/mweststrate/immer)
 - [**mobx**](https://github.com/mobxjs/mobx)

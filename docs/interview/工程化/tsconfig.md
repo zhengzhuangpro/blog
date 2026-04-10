@@ -1,3 +1,8 @@
+---
+title: tsconfig
+---
+
+```json
 {
 	"compilerOptions": {
 		"target": "es5",
@@ -17,3 +22,4 @@
 	},
 	"exclude": ["node_modules", "dist","**/__test__", "docs",]
 }
+```

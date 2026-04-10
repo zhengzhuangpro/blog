@@ -1,3 +1,7 @@
+---
+title: vuex
+---
+
 ```js
 const store = new Vuex.Store({
   state: {

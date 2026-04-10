@@ -1,4 +1,6 @@
-# BFC
+---
+title: BFC
+---
 
 ### 何为 BFC
 

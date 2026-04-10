@@ -1,3 +1,7 @@
+---
+title: webpack工作流程
+---
+
 wepback它的目标是是什么？
 webpack它能将依赖的模块转化成可以代表这些包的静态文件
 

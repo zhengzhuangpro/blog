@@ -1,3 +1,7 @@
+---
+title: 简述Widget的StatelessWidget和StatefulWidget两种状态组件类
+---
+
 # 简述 Widget 的 StatelessWidget 和 StatefulWidget 两种状态组件类
 
 - `StatelessWidget`: 一旦创建就不关心任何变化，在下次构建之前都不会改变。它们除了依赖于自身的配置信息（在父节点构建时提供）外不再依赖于任何其他信息。比如典型的 Text、Row、Column、Container 等，都是 StatelessWidget。它的生命周期相当简单：初始化、通过 build()渲染。

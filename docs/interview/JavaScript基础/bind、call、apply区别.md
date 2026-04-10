@@ -1,3 +1,7 @@
+---
+title: bind、call、apply区别
+---
+
 # bind、call、apply 区别
 
 ## 作用

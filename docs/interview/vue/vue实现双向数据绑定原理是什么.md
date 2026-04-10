@@ -1,4 +1,6 @@
-# vue实现双向数据绑定原理是什么
+---
+title: vue实现双向数据绑定原理是什么
+---
 
 ```html
 <!DOCTYPE html>

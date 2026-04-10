@@ -1,3 +1,7 @@
+---
+title: promise问题
+---
+
 ```js
 const promiseA = new Promise( (resolutionFunc,rejectionFunc) => {
     resolutionFunc(777);

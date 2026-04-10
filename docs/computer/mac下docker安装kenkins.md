@@ -19,7 +19,7 @@ $ mkdir /Users/你的主机名/docker/jenkins
 $ docker pull jenkins/jenkins
 ```
 
-<!-- ![image-20210602152641796](/Users/zhengzhuang/Documents/codeProject/blog/工具力/image-20210602152641796.png) -->
+![image-20210602152641796](./image-20210602152641796.png)
 
 ##### 3.部署jenkins
 
@@ -41,4 +41,4 @@ http://localhost:8080/
 
 或者是用命令查看`cat /Users/你的主机名/docker/jenkins/secrets/initialAdminPassword`
 
-<!-- ![image-20210602153455113](/Users/zhengzhuang/Documents/codeProject/blog/工具力/image-20210602153455113.png) -->
+![image-20210602153455113](./image-20210602153455113.png)

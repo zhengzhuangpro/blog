@@ -1,3 +1,7 @@
+---
+title: useLayoutEffect
+---
+
 
 1. useEffect 是异步执行的，而useLayoutEffect是同步执行的。
 2. useEffect 的执行时机是浏览器完成渲染之后异步不会阻塞渲染，而 useLayoutEffect 的执行时机componentDidMount 等价。useLayoutEffect在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同步刷新

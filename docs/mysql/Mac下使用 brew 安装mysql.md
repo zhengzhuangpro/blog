@@ -1,4 +1,6 @@
-# Mac下使用 brew 安装mysql
+---
+title: Mac下使用 brew 安装mysql
+---
 
 ### 打开控制台
 
