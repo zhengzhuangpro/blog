@@ -4,16 +4,13 @@
   "description": "北关尔士 - 个人技术博客",
   "scripts": {
     "mintlify:sync": "node scripts/generate-docs-json.mjs",
-    "dev": "pnpm run mintlify:sync && pnpm dlx mintlify dev",
-    "build": "pnpm run mintlify:sync && pnpm dlx mintlify validate",
-    "check-links": "pnpm run mintlify:sync && pnpm dlx mintlify broken-links",
-    "export": "pnpm run mintlify:sync && pnpm dlx mintlify export --output export.zip",
+    "dev": "pnpm run mintlify:sync && npx --yes mintlify dev",
+    "build": "pnpm run mintlify:sync && npx --yes mintlify validate",
+    "check-links": "pnpm run mintlify:sync && npx --yes mintlify broken-links",
+    "export": "pnpm run mintlify:sync && npx --yes mintlify export --output export.zip",
     "vercel:build": "bash scripts/vercel-build.sh"
   },
   "keywords": [],
   "author": "zhengzhuang",
-  "license": "ISC",
-  "dependencies": {
-    "mintlify": "^4.2.504"
-  }
+  "license": "ISC"
 }

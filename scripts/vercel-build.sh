@@ -10,11 +10,7 @@ pnpm run mintlify:sync
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
 
-if command -v pnpm >/dev/null 2>&1; then
-  pnpm dlx mintlify export --output "$ARCHIVE_PATH"
-else
-  npx --yes mintlify export --output "$ARCHIVE_PATH"
-fi
+npx --yes mintlify export --output "$ARCHIVE_PATH"
 unzip -q -o "$ARCHIVE_PATH" -d "$OUT_DIR"
 
 # Remove air-gap helper files not needed for Vercel static hosting.
