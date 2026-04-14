@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(pnpm run:*)",
-      "Bash(npx mintlify:*)"
+      "Bash(npx mintlify:*)",
+      "Bash(node -e ':*)",
+      "Bash(npm view:*)",
+      "Bash(chmod +x /Users/zhengzhuang/github/blog/scripts/local-build.sh)",
+      "Bash(chmod +x /Users/zhengzhuang/github/blog/scripts/cloudflare-build.sh)"
     ]
   }
 }

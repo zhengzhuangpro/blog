@@ -5,10 +5,9 @@
   "scripts": {
     "mintlify:sync": "node scripts/generate-docs-json.mjs",
     "dev": "pnpm run mintlify:sync && npx --yes mintlify dev",
-    "build": "pnpm run mintlify:sync && npx --yes mintlify validate",
+    "build": "bash scripts/cloudflare-build.sh",
     "check-links": "pnpm run mintlify:sync && npx --yes mintlify broken-links",
-    "export": "pnpm run mintlify:sync && npx --yes mintlify export --output export.zip",
-    "vercel:build": "bash scripts/vercel-build.sh"
+    "export": "pnpm run mintlify:sync && npx --yes mintlify export --output export.zip"
   },
   "keywords": [],
   "author": "zhengzhuang",
