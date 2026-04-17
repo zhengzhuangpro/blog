@@ -15,7 +15,8 @@
       "Bash(python3 -c \" import json, sys data = json.load\\(sys.stdin\\) data['pnpm'] = {'onlyBuiltDependencies': ['esbuild', 'sharp']} print\\(json.dumps\\(data, indent=2\\)\\) \")",
       "Bash(pnpm config *)",
       "Bash(pnpm rebuild *)",
-      "Bash(pnpm build *)"
+      "Bash(pnpm build *)",
+      "Bash(magick -background none public/icon.svg -define icon:auto-resize=32,16 public/favicon.ico)"
     ],
     "additionalDirectories": [
       "/Users/zhengzhuang/github/blog/src/content/posts",
