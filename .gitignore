@@ -1,7 +1,4 @@
 node_modules
-.temp
-.cache
-pnpm-lock.yaml
-
 dist
+.astro/
 .DS_Store

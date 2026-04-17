@@ -1,0 +1,118 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface TocItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  category?: string;
+  date?: Date;
+  toc?: TocItem[];
+}
+
+const { title, description, category, date, toc = [] } = Astro.props;
+const hasToc = toc.length > 0;
+---
+
+<BaseLayout title={`${title} - 北关尔士`} description={description}>
+  <a href="/" class="back" id="backBtn">&larr; 返回</a>
+  <script>
+    const btn = document.getElementById('backBtn');
+    if (btn) {
+      const ref = document.referrer;
+      if (ref && new URL(ref).origin === location.origin && !new URL(ref).hash) {
+        btn.href = ref;
+      }
+    }
+  </script>
+  <div class="post-layout">
+    <article>
+      <header class="post-header">
+        <h1>{title}</h1>
+        <div class="post-meta">
+          {category && <span class="badge">{category}</span>}
+          {date && <time datetime={date.toISOString()}>{date.toLocaleDateString('zh-CN')}</time>}
+        </div>
+      </header>
+      <div class="post-body">
+        <slot />
+      </div>
+    </article>
+  </div>
+  {hasToc && (
+    <aside class="toc">
+      <div class="toc-inner">
+        <div class="toc-title">目录</div>
+        <nav>
+          {toc.map((item) => (
+            <a href={`#${item.slug}`} class={`toc-link toc-h${item.depth}`}>{item.text}</a>
+          ))}
+        </nav>
+      </div>
+    </aside>
+  )}
+</BaseLayout>
+
+<style>
+  .back { display: inline-block; margin-bottom: 20px; font-size: 14px; }
+
+  .post-header { margin-bottom: 24px; }
+  .post-header h1 { margin-bottom: 8px; }
+  .post-meta { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-muted); }
+  .badge {
+    background: var(--accent);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+  .post-body { margin-top: 16px; }
+
+  .toc {
+    display: none;
+  }
+
+  .toc-inner {
+    border-left: 2px solid var(--border);
+    padding-left: 12px;
+  }
+
+  .toc-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .toc nav { display: flex; flex-direction: column; gap: 2px; }
+
+  .toc-link {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+  .toc-link:hover { color: var(--accent); }
+  .toc-h2 { padding-left: 0; }
+  .toc-h3 { padding-left: 12px; }
+
+  @media (min-width: 1200px) {
+    .toc {
+      display: block;
+      position: fixed;
+      top: 64px;
+      left: calc(50% + 380px);
+      width: 180px;
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+  }
+</style>
+

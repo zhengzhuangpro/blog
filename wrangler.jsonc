@@ -1,0 +1,9 @@
+{
+  "name": "blog",
+  "compatibility_date": "2026-04-17",
+  "main": "./dist/_worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  }
+}

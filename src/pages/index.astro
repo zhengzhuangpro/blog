@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .filter((post) => !post.id.endsWith('README.md'))
+  .sort((a, b) => {
+    const da = a.data.date || a.data.pubDate || new Date(0);
+    const db = b.data.date || b.data.pubDate || new Date(0);
+    return db.getTime() - da.getTime();
+  });
+
+const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))];
+---
+
+<BaseLayout title="北关尔士">
+  <section class="hero">
+    <h1>北关尔士</h1>
+    <p>记录我生活的点点积极</p>
+  </section>
+
+  {categories.length > 0 && (
+    <section class="categories">
+      {categories.map((cat) => (
+        <a href={`/categories/${cat}`} class="cat-badge">{cat}</a>
+      ))}
+    </section>
+  )}
+
+  <section class="posts">
+    {posts.map((post) => (
+      <a href={`/${post.id.replace(/\.md$/, '')}`} class="post-card">
+        <div class="post-card-title">{post.data.title}</div>
+        <div class="post-card-meta">
+          {post.data.category && <span class="cat-tag">{post.data.category}</span>}
+          {(post.data.date || post.data.pubDate) && (
+            <span>{(post.data.date || post.data.pubDate)!.toLocaleDateString('zh-CN')}</span>
+          )}
+        </div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 32px 0 24px;
+  }
+  .hero h1 { font-size: 1.6em; font-weight: 700; margin-bottom: 6px; }
+  .hero p { color: var(--text-muted); font-size: 14px; }
+
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .cat-badge {
+    background: var(--border);
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    transition: all 0.15s;
+  }
+  .cat-badge:hover { background: var(--accent); color: #fff; }
+
+  .posts { display: flex; flex-direction: column; gap: 2px; }
+
+  .post-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    transition: background 0.15s;
+  }
+  .post-card:hover { background: var(--border); }
+
+  .post-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .post-card:hover .post-card-title { color: var(--accent); }
+
+  .post-card-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .cat-tag {
+    background: var(--border);
+    padding: 1px 8px;
+    border-radius: 8px;
+  }
+</style>

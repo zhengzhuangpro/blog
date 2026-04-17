@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+const posts = allPosts.filter((p) => !p.id.endsWith('README.md'));
+const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
+---
+
+<BaseLayout title="分类 - 北关尔士">
+  <a href="/" class="back" id="backBtn">&larr; 返回</a>
+  <script>
+    const btn = document.getElementById('backBtn');
+    if (btn) {
+      const ref = document.referrer;
+      if (ref && new URL(ref).origin === location.origin) {
+        btn.href = ref;
+      }
+    }
+  </script>
+  <h1 style="font-size:1.3em; margin-bottom:20px;">分类</h1>
+  <div class="cat-list">
+    {categories.map((cat) => {
+      const count = posts.filter((p) => p.data.category === cat).length;
+      return (
+        <a href={`/categories/${cat}`} class="cat-item">
+          <span class="cat-name">{cat}</span>
+          <span class="cat-count">{count}</span>
+        </a>
+      );
+    })}
+  </div>
+</BaseLayout>
+
+<style>
+  .cat-list { display: flex; flex-direction: column; gap: 2px; }
+  .cat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    transition: background 0.15s;
+    color: var(--text);
+  }
+  .cat-item:hover { background: var(--border); }
+  .cat-name { font-weight: 500; }
+  .cat-count { color: var(--text-muted); font-size: 13px; }
+</style>

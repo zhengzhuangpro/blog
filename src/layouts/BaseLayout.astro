@@ -1,0 +1,165 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = '记录我生活的点点积极' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-title">北关尔士</a>
+        <div class="nav-links">
+          <a href="/">首页</a>
+          <a href="/categories">分类</a>
+          <a href="https://github.com/zhengzhuangpro" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </nav>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="footer">
+      <p>&copy; {new Date().getFullYear()} 北关尔士. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #fafafa;
+    --bg-code: #0d1117;
+    --text: #1a1a1a;
+    --text-muted: #666;
+    --border: #e5e5e5;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --radius: 6px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f0f0f;
+      --bg-code: #161b22;
+      --text: #e5e5e5;
+      --text-muted: #999;
+      --border: #2a2a2a;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); }
+
+  .nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .nav-title:hover { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .nav-links a { color: var(--text-muted); }
+  .nav-links a:hover { color: var(--accent); }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    flex: 1;
+    width: 100%;
+  }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Prose */
+  article h1 { font-size: 1.6em; margin: 0 0 12px; font-weight: 700; }
+  article h2 { font-size: 1.3em; margin: 28px 0 10px; font-weight: 600; }
+  article h3 { font-size: 1.1em; margin: 24px 0 8px; font-weight: 600; }
+  article p { margin: 10px 0; }
+  article ul, article ol { margin: 10px 0; padding-left: 24px; }
+  article li { margin: 4px 0; }
+  article blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 4px 16px;
+    margin: 12px 0;
+    color: var(--text-muted);
+  }
+  article code {
+    background: var(--bg-code);
+    color: #e6edf3;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  article pre {
+    background: var(--bg-code);
+    color: #e6edf3;
+    padding: 16px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  article pre code { background: none; padding: 0; }
+  article img { max-width: 100%; border-radius: var(--radius); }
+  article hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  article table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  article th, article td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+  article th { background: var(--bg-code); font-weight: 600; }
+</style>
