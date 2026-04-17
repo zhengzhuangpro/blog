@@ -7,7 +7,7 @@ const posts = allPosts.filter((p) => !p.id.endsWith('README.md'));
 const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
 ---
 
-<BaseLayout title="分类 - 北关尔士">
+<BaseLayout title="分类 - 北关尔士 - 郑壮">
   <a href="/" class="back" id="backBtn">&larr; 返回</a>
   <script>
     const btn = document.getElementById('backBtn');
