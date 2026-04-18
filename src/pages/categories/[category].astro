@@ -1,57 +1,71 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('posts');
-  const posts = allPosts.filter((p) => !p.id.endsWith('README.md'));
-  const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))];
+  const allPosts = await getCollection('posts')
+  const posts = allPosts.filter((p) => !p.id.endsWith('README.md'))
+  const categories = [
+    ...new Set(posts.map((p) => p.data.category).filter(Boolean))
+  ]
   return categories.map((cat) => ({
     params: { category: cat },
     props: {
       category: cat,
-      posts: posts.filter((p) => p.data.category === cat),
-    },
-  }));
+      posts: posts.filter((p) => p.data.category === cat)
+    }
+  }))
 }
 
-const { category, posts } = Astro.props;
+const { category, posts } = Astro.props
 const sorted = posts.sort((a, b) => {
-  const da = a.data.date || a.data.pubDate || new Date(0);
-  const db = b.data.date || b.data.pubDate || new Date(0);
-  return db.getTime() - da.getTime();
-});
+  const da = a.data.date || a.data.pubDate || new Date(0)
+  const db = b.data.date || b.data.pubDate || new Date(0)
+  return db.getTime() - da.getTime()
+})
 ---
 
-<BaseLayout title={`${category} - 北关尔士 - 郑壮`}>
+<BaseLayout title={`${category} - 郑壮 blog`}>
   <a href="/" class="back" id="backBtn">&larr; 返回</a>
   <script>
-    const btn = document.getElementById('backBtn');
+    const btn = document.getElementById('backBtn')
     if (btn) {
-      const ref = document.referrer;
+      const ref = document.referrer
       if (ref && new URL(ref).origin === location.origin) {
-        btn.href = ref;
+        btn.href = ref
       }
     }
   </script>
   <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
     <h1 style="font-size:1.3em;">{category}</h1>
-    <span style="color:var(--text-muted); font-size:13px;">{sorted.length} 篇</span>
+    <span style="color:var(--text-muted); font-size:13px;"
+      >{sorted.length} 篇</span
+    >
   </div>
   <div class="posts">
-    {sorted.map((post) => (
-      <a href={`/${post.id.replace(/\.md$/, '')}`} class="post-card">
-        <span class="post-card-title">{post.data.title}</span>
-        {(post.data.date || post.data.pubDate) && (
-          <span class="post-card-date">{(post.data.date || post.data.pubDate)!.toLocaleDateString('zh-CN')}</span>
-        )}
-      </a>
-    ))}
+    {
+      sorted.map((post) => (
+        <a href={`/${post.id.replace(/\.md$/, '')}`} class="post-card">
+          <span class="post-card-title">{post.data.title}</span>
+          {(post.data.date || post.data.pubDate) && (
+            <span class="post-card-date">
+              {(post.data.date || post.data.pubDate)!.toLocaleDateString(
+                'zh-CN'
+              )}
+            </span>
+          )}
+        </a>
+      ))
+    }
   </div>
 </BaseLayout>
 
 <style>
-  .posts { display: flex; flex-direction: column; gap: 2px; }
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
   .post-card {
     display: flex;
     justify-content: space-between;
@@ -60,9 +74,26 @@ const sorted = posts.sort((a, b) => {
     border-radius: var(--radius);
     transition: background 0.15s;
   }
-  .post-card:hover { background: var(--border); }
-  .post-card-title { font-size: 14px; font-weight: 500; color: var(--text); }
-  .post-card:hover .post-card-title { color: var(--accent); }
-  .post-card-date { color: var(--text-muted); font-size: 12px; flex-shrink: 0; margin-left: 16px; }
-  .back { display: inline-block; margin-bottom: 16px; font-size: 14px; }
+  .post-card:hover {
+    background: var(--border);
+  }
+  .post-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .post-card:hover .post-card-title {
+    color: var(--accent);
+  }
+  .post-card-date {
+    color: var(--text-muted);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
 </style>

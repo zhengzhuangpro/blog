@@ -1,10 +1,10 @@
 ---
 interface Props {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
 }
 
-const { title, description = '记录我生活的点点积极' } = Astro.props;
+const { title, description = '记录我生活的点点积极' } = Astro.props
 ---
 
 <!doctype html>
@@ -19,11 +19,35 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
   <body>
     <nav class="nav">
       <div class="nav-inner">
-        <a href="/" class="nav-title">北关尔士 - 郑壮</a>
+        <a href="/" class="nav-title">郑壮 blog</a>
         <div class="nav-links">
           <a href="/">首页</a>
           <a href="/categories">分类</a>
-          <a href="https://github.com/zhengzhuangpro" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://zhengz.cc" rel="noopener">主页</a>
+          <a
+            href="https://github.com/zhengzhuangpro"
+            target="_blank"
+            rel="noopener">GitHub</a
+          >
+          <button class="search-btn" id="search-btn" aria-label="搜索">
+            <svg
+              class="search-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><circle cx="11" cy="11" r="8"></circle><line
+                x1="21"
+                y1="21"
+                x2="16.65"
+                y2="16.65"></line></svg
+            >
+            <span class="search-kbd"><kbd>⌘ K</kbd></span>
+          </button>
         </div>
       </div>
     </nav>
@@ -31,8 +55,25 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
       <slot />
     </main>
     <footer class="footer">
-      <p>&copy; {new Date().getFullYear()} 北关尔士 - 郑壮. All rights reserved.</p>
+      <p>
+        &copy; {new Date().getFullYear()} 郑壮 blog. All rights reserved.
+      </p>
     </footer>
+    <div class="lightbox-overlay" id="lightbox">
+      <img class="lightbox-img" id="lightbox-img" />
+    </div>
+    <div class="search-overlay" id="search-overlay">
+      <div class="search-modal">
+        <input
+          class="search-input"
+          id="search-input"
+          type="text"
+          placeholder="搜索文章..."
+          autocomplete="off"
+        />
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -60,10 +101,16 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
     }
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+      sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
@@ -73,8 +120,13 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
     flex-direction: column;
   }
 
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { color: var(--accent-hover); }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--accent-hover);
+  }
 
   .nav {
     border-bottom: 1px solid var(--border);
@@ -99,7 +151,9 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
     font-weight: 700;
     color: var(--text);
   }
-  .nav-title:hover { color: var(--accent); }
+  .nav-title:hover {
+    color: var(--accent);
+  }
 
   .nav-links {
     display: flex;
@@ -107,8 +161,135 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
     font-size: 14px;
     color: var(--text-muted);
   }
-  .nav-links a { color: var(--text-muted); }
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a {
+    color: var(--text-muted);
+  }
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+  }
+  .search-btn:hover {
+    color: var(--accent);
+  }
+  .search-kbd {
+    display: none;
+    margin-left: 4px;
+    font-size: 11px;
+  }
+  .search-icon {
+    display: block;
+  }
+  @media (min-width: 768px) {
+    .search-icon {
+      display: none;
+    }
+    .search-kbd {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .search-kbd kbd {
+      background: var(--border);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+  }
+
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s,
+      visibility 0.2s;
+  }
+  .search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .search-modal {
+    width: 90%;
+    max-width: 520px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+    transform: scale(0.96) translateY(-8px);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .search-overlay.active .search-modal {
+    transform: scale(1) translateY(0);
+  }
+  .search-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 10px 10px 0 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+  }
+  .search-input::placeholder {
+    color: var(--text-muted);
+  }
+  .search-results {
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+  .search-results:empty {
+    display: none;
+  }
+  .search-item {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+  .search-item:hover {
+    background: var(--border);
+  }
+  .search-item-title {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .search-item-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    display: flex;
+    gap: 8px;
+  }
+  .search-empty {
+    padding: 20px 16px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
 
   .container {
     max-width: 720px;
@@ -127,12 +308,32 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
   }
 
   /* Prose */
-  article h1 { font-size: 1.6em; margin: 0 0 12px; font-weight: 700; }
-  article h2 { font-size: 1.3em; margin: 28px 0 10px; font-weight: 600; }
-  article h3 { font-size: 1.1em; margin: 24px 0 8px; font-weight: 600; }
-  article p { margin: 10px 0; }
-  article ul, article ol { margin: 10px 0; padding-left: 24px; }
-  article li { margin: 4px 0; }
+  article h1 {
+    font-size: 1.6em;
+    margin: 0 0 12px;
+    font-weight: 700;
+  }
+  article h2 {
+    font-size: 1.3em;
+    margin: 28px 0 10px;
+    font-weight: 600;
+  }
+  article h3 {
+    font-size: 1.1em;
+    margin: 24px 0 8px;
+    font-weight: 600;
+  }
+  article p {
+    margin: 10px 0;
+  }
+  article ul,
+  article ol {
+    margin: 10px 0;
+    padding-left: 24px;
+  }
+  article li {
+    margin: 4px 0;
+  }
   article blockquote {
     border-left: 3px solid var(--accent);
     padding: 4px 16px;
@@ -156,10 +357,188 @@ const { title, description = '记录我生活的点点积极' } = Astro.props;
     font-size: 13px;
     line-height: 1.6;
   }
-  article pre code { background: none; padding: 0; }
-  article img { max-width: 100%; border-radius: var(--radius); }
-  article hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-  article table { border-collapse: collapse; width: 100%; margin: 12px 0; }
-  article th, article td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
-  article th { background: var(--bg-code); font-weight: 600; }
+  article pre code {
+    background: none;
+    padding: 0;
+  }
+  article img {
+    max-width: 100%;
+    border-radius: var(--radius);
+  }
+  article hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+  article table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+  }
+  article th,
+  article td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+  }
+  article th {
+    background: var(--bg-code);
+    font-weight: 600;
+  }
+
+  article img {
+    cursor: zoom-in;
+  }
+
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s,
+      visibility 0.3s;
+  }
+  .lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .lightbox-img {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: var(--radius);
+    object-fit: contain;
+    transform: scale(0.8);
+    opacity: 0;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s;
+  }
+  .lightbox-overlay.active .lightbox-img {
+    transform: scale(1);
+    opacity: 1;
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var searchBtn = document.getElementById('search-btn')
+    var searchOverlay = document.getElementById('search-overlay')
+    var searchInput = document.getElementById('search-input')
+    var searchResults = document.getElementById('search-results')
+    var searchData = []
+
+    function openSearch() {
+      searchOverlay.classList.add('active')
+      document.body.style.overflow = 'hidden'
+      searchInput.value = ''
+      searchResults.innerHTML = ''
+      setTimeout(function () {
+        searchInput.focus()
+      }, 50)
+    }
+    function closeSearch() {
+      searchOverlay.classList.remove('active')
+      document.body.style.overflow = ''
+    }
+
+    searchBtn.addEventListener('click', openSearch)
+    searchOverlay.addEventListener('click', function (e) {
+      if (e.target === searchOverlay) closeSearch()
+    })
+
+    fetch('/search-index.json')
+      .then(function (r) {
+        return r.json()
+      })
+      .then(function (data) {
+        searchData = data
+      })
+
+    searchInput.addEventListener('input', function () {
+      var q = searchInput.value.trim().toLowerCase()
+      if (!q) {
+        searchResults.innerHTML = ''
+        return
+      }
+      var results = searchData.filter(function (post) {
+        return (
+          post.title.toLowerCase().indexOf(q) !== -1 ||
+          post.description.toLowerCase().indexOf(q) !== -1 ||
+          post.category.toLowerCase().indexOf(q) !== -1 ||
+          post.tags.some(function (t) {
+            return t.toLowerCase().indexOf(q) !== -1
+          })
+        )
+      })
+      if (results.length === 0) {
+        searchResults.innerHTML =
+          '<div class="search-empty">没有找到相关文章</div>'
+        return
+      }
+      searchResults.innerHTML = results
+        .map(function (post) {
+          var meta = ''
+          if (post.category) meta += '<span>' + post.category + '</span>'
+          if (post.date) meta += '<span>' + post.date + '</span>'
+          return (
+            '<a class="search-item" href="' +
+            post.slug +
+            '">' +
+            '<div class="search-item-title">' +
+            post.title +
+            '</div>' +
+            (meta ? '<div class="search-item-meta">' + meta + '</div>' : '') +
+            '</a>'
+          )
+        })
+        .join('')
+    })
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeSearch()
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        openSearch()
+      }
+    })
+  })
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('lightbox')
+    var img = document.getElementById('lightbox-img')
+    if (!overlay || !img) return
+
+    function openLightbox(src) {
+      img.src = src
+      overlay.classList.add('active')
+      document.body.style.overflow = 'hidden'
+    }
+    function closeLightbox() {
+      overlay.classList.remove('active')
+      img.src = ''
+      document.body.style.overflow = ''
+    }
+
+    document.querySelectorAll('article img').forEach(function (el) {
+      el.style.cursor = 'zoom-in'
+      el.addEventListener('click', function () {
+        openLightbox(el.src)
+      })
+    })
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeLightbox()
+    })
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox()
+    })
+  })
+</script>
