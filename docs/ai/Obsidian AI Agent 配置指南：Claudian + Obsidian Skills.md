@@ -3,7 +3,6 @@ title: Obsidian AI Agent 配置指南：Claudian + Obsidian Skills
 category: ai
 date: 2026-01-20
 ---
-# Obsidian AI Agent 配置指南：Claudian + Obsidian Skills
 
 ## 1. 核心组件
 *   **Claudian**: Obsidian 第三方插件（暂未上架官方市场），适配 Claude Code。
