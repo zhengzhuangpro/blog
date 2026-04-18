@@ -14,6 +14,10 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://zhengz.cc/blog/favicon.ico" />
+    <meta property="og:type" content="website" />
     <title>{title}</title>
   </head>
   <body>
