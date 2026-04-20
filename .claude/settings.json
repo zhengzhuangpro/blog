@@ -16,7 +16,8 @@
       "Bash(pnpm config *)",
       "Bash(pnpm rebuild *)",
       "Bash(pnpm build *)",
-      "Bash(magick -background none public/icon.svg -define icon:auto-resize=32,16 public/favicon.ico)"
+      "Bash(magick -background none public/icon.svg -define icon:auto-resize=32,16 public/favicon.ico)",
+      "Bash(npx astro *)"
     ],
     "additionalDirectories": [
       "/Users/zhengzhuang/github/blog/src/content/posts",

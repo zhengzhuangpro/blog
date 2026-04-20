@@ -34,9 +34,69 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
           >
           <a href="https://zhengz.cc" rel="noopener">主页</a>
           <button class="theme-btn" id="theme-btn" aria-label="切换主题">
-            <svg class="theme-icon theme-icon-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <svg class="theme-icon theme-icon-dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            <svg class="theme-icon theme-icon-system" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg
+              class="theme-icon theme-icon-light"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><circle cx="12" cy="12" r="5"></circle><line
+                x1="12"
+                y1="1"
+                x2="12"
+                y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line
+                x1="4.22"
+                y1="4.22"
+                x2="5.64"
+                y2="5.64"></line><line
+                x1="18.36"
+                y1="18.36"
+                x2="19.78"
+                y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"
+              ></line><line x1="21" y1="12" x2="23" y2="12"></line><line
+                x1="4.22"
+                y1="19.78"
+                x2="5.64"
+                y2="18.36"></line><line
+                x1="18.36"
+                y1="5.64"
+                x2="19.78"
+                y2="4.22"></line></svg
+            >
+            <svg
+              class="theme-icon theme-icon-dark"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+              ></path></svg
+            >
+            <svg
+              class="theme-icon theme-icon-system"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><rect x="2" y="3" width="20" height="14" rx="2" ry="2"
+              ></rect><line x1="8" y1="21" x2="16" y2="21"></line><line
+                x1="12"
+                y1="17"
+                x2="12"
+                y2="21"></line></svg
+            >
           </button>
           <button class="search-btn" id="search-btn" aria-label="搜索">
             <svg
@@ -98,7 +158,7 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
     --radius: 6px;
   }
 
-  [data-theme="dark"] {
+  [data-theme='dark'] {
     --bg: #0f0f0f;
     --bg-code: #161b22;
     --text: #e5e5e5;
@@ -201,10 +261,14 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
   .theme-btn:hover {
     color: var(--accent);
   }
-  .theme-icon { display: none; }
-  [data-theme-pref="light"] .theme-icon-light,
-  [data-theme-pref="dark"] .theme-icon-dark,
-  [data-theme-pref="system"] .theme-icon-system { display: block; }
+  .theme-icon {
+    display: none;
+  }
+  [data-theme-pref='light'] .theme-icon-light,
+  [data-theme-pref='dark'] .theme-icon-dark,
+  [data-theme-pref='system'] .theme-icon-system {
+    display: block;
+  }
   .search-kbd {
     display: none;
     margin-left: 4px;
@@ -380,10 +444,42 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
     margin: 12px 0;
     font-size: 13px;
     line-height: 1.6;
+    position: relative;
   }
   article pre code {
     background: none;
     padding: 0;
+  }
+  .code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #adbac7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    transition:
+      opacity 0.2s,
+      background 0.15s;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  article pre:hover .code-copy-btn {
+    opacity: 1;
+  }
+  .code-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #e6edf3;
+  }
+  .code-copy-btn.copied {
+    color: #3fb950;
+    border-color: rgba(63, 185, 80, 0.3);
   }
   article img {
     max-width: 100%;
@@ -450,34 +546,42 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
 </style>
 
 <script is:inline>
-  (function() {
-    var modes = ['light', 'dark', 'system'];
-    var pref = localStorage.getItem('theme') || 'system';
+  ;(function () {
+    var modes = ['light', 'dark', 'system']
+    var pref = localStorage.getItem('theme') || 'system'
 
     function apply(p) {
-      pref = p;
-      var isDark = p === 'dark' || (p === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme-pref', p);
+      pref = p
+      var isDark =
+        p === 'dark' ||
+        (p === 'system' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute(
+        'data-theme',
+        isDark ? 'dark' : 'light'
+      )
+      document.documentElement.setAttribute('data-theme-pref', p)
     }
 
-    apply(pref);
+    apply(pref)
 
-    document.addEventListener('DOMContentLoaded', function() {
-      var btn = document.getElementById('theme-btn');
-      btn.addEventListener('click', function() {
-        var idx = modes.indexOf(pref);
-        var next = modes[(idx + 1) % modes.length];
-        if (next === 'system') localStorage.removeItem('theme');
-        else localStorage.setItem('theme', next);
-        apply(next);
-      });
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('theme-btn')
+      btn.addEventListener('click', function () {
+        var idx = modes.indexOf(pref)
+        var next = modes[(idx + 1) % modes.length]
+        if (next === 'system') localStorage.removeItem('theme')
+        else localStorage.setItem('theme', next)
+        apply(next)
+      })
 
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-        if (pref === 'system') apply('system');
-      });
-    });
-  })();
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', function () {
+          if (pref === 'system') apply('system')
+        })
+    })
+  })()
 </script>
 
 <script is:inline>
@@ -561,6 +665,32 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
         e.preventDefault()
         openSearch()
       }
+    })
+  })
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('article pre').forEach(function (pre) {
+      var btn = document.createElement('button')
+      btn.className = 'code-copy-btn'
+      btn.innerHTML =
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'
+      pre.appendChild(btn)
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code')
+        var text = code ? code.textContent : pre.textContent
+        navigator.clipboard.writeText(text).then(function () {
+          btn.classList.add('copied')
+          btn.innerHTML =
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+          setTimeout(function () {
+            btn.classList.remove('copied')
+            btn.innerHTML =
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'
+          }, 2000)
+        })
+      })
     })
   })
 </script>
