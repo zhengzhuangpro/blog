@@ -22,6 +22,9 @@ jobs:
           rsync -av --delete theme/src/ src/
           rsync -av --delete theme/public/ public/
 
+      - name: Cleanup theme dir
+        run: rm -rf theme
+
       - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
