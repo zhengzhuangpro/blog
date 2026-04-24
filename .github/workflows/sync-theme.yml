@@ -21,6 +21,7 @@ jobs:
         run: |
           rsync -av --delete \
             --exclude='config.ts' \
+            --exclude='images/' \
             theme/src/ src/
           rsync -av --delete theme/public/ public/
 
