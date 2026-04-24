@@ -1,0 +1,32 @@
+name: Sync Theme
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout blog repo
+        uses: actions/checkout@v4
+
+      - name: Clone theme repo
+        run: |
+          git clone --depth 1 https://github.com/zhengzhuangpro/astro-theme-simple.git theme
+
+      - name: Sync files
+        run: |
+          rsync -av --delete theme/src/ src/
+          rsync -av --delete theme/public/ public/
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -m "chore: sync theme"
+          git push
