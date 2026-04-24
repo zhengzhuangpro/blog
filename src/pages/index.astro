@@ -20,7 +20,6 @@ const categories = [
 <BaseLayout title={siteConfig.title}>
   <section class="hero">
     {siteConfig.logo && <img src={siteConfig.logo} alt="" class="hero-logo" />}
-    <h1>{siteConfig.title}</h1>
     <p>{siteConfig.description}</p>
   </section>
 
@@ -61,25 +60,22 @@ const categories = [
 
 <style>
   .hero {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 32px 0 24px;
   }
   .hero-logo {
-    width: 72px;
-    height: 72px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 {
-    font-size: 1.6em;
-    font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
   }
   .hero p {
     color: var(--text-muted);
     font-size: 14px;
+    margin: 0;
   }
 
   .categories {
