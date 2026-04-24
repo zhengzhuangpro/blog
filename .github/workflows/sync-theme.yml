@@ -19,7 +19,9 @@ jobs:
 
       - name: Sync files
         run: |
-          rsync -av --delete theme/src/ src/
+          rsync -av --delete \
+            --exclude='config.ts' \
+            theme/src/ src/
           rsync -av --delete theme/public/ public/
 
       - name: Cleanup theme dir
