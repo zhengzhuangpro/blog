@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { siteConfig } from '../config'
 import { getCollection } from 'astro:content'
 
 const allPosts = await getCollection('posts')
@@ -16,17 +17,18 @@ const categories = [
 ]
 ---
 
-<BaseLayout title="郑壮 blog">
+<BaseLayout title={siteConfig.title}>
   <section class="hero">
-    <h1>郑壮 blog</h1>
-    <p>记录我生活的点点积极</p>
+    {siteConfig.logo && <img src={siteConfig.logo} alt="" class="hero-logo" />}
+    <h1>{siteConfig.title}</h1>
+    <p>{siteConfig.description}</p>
   </section>
 
   {
     categories.length > 0 && (
       <section class="categories">
         {categories.map((cat) => (
-          <a href={`/categories/${cat}`} class="cat-badge">
+          <a href={`/categories/${encodeURIComponent(cat)}`} class="cat-badge">
             {cat}
           </a>
         ))}
@@ -62,6 +64,14 @@ const categories = [
     text-align: center;
     padding: 32px 0 24px;
   }
+  .hero-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 16px;
+  }
+
   .hero h1 {
     font-size: 1.6em;
     font-weight: 700;

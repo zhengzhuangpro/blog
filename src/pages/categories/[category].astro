@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { siteConfig } from '../../config'
 import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -25,17 +26,7 @@ const sorted = posts.sort((a, b) => {
 })
 ---
 
-<BaseLayout title={`${category} - 郑壮 blog`}>
-  <a href="/" class="back" id="backBtn">&larr; 返回</a>
-  <script>
-    const btn = document.getElementById('backBtn')
-    if (btn) {
-      const ref = document.referrer
-      if (ref && new URL(ref).origin === location.origin) {
-        btn.href = ref
-      }
-    }
-  </script>
+<BaseLayout title={`${category} - ${siteConfig.title}`}>
   <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
     <h1 style="font-size:1.3em;">{category}</h1>
     <span style="color:var(--text-muted); font-size:13px;"
@@ -90,10 +81,5 @@ const sorted = posts.sort((a, b) => {
     font-size: 12px;
     flex-shrink: 0;
     margin-left: 16px;
-  }
-  .back {
-    display: inline-block;
-    margin-bottom: 16px;
-    font-size: 14px;
   }
 </style>

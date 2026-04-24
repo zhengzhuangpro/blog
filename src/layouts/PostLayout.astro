@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from '../config'
 import BaseLayout from './BaseLayout.astro'
 
 interface TocItem {
@@ -19,21 +20,7 @@ const { title, description, category, date, toc = [] } = Astro.props
 const hasToc = toc.length > 0
 ---
 
-<BaseLayout title={`${title} - 郑壮 blog`} description={description}>
-  <a href="/" class="back" id="backBtn">&larr; 返回</a>
-  <script>
-    const btn = document.getElementById('backBtn')
-    if (btn) {
-      const ref = document.referrer
-      if (
-        ref &&
-        new URL(ref).origin === location.origin &&
-        !new URL(ref).hash
-      ) {
-        btn.href = ref
-      }
-    }
-  </script>
+<BaseLayout title={`${title} - ${siteConfig.title}`} description={description}>
   <div class="post-layout">
     <article>
       <header class="post-header">
@@ -73,13 +60,7 @@ const hasToc = toc.length > 0
 </BaseLayout>
 
 <style>
-  .back {
-    display: inline-block;
-    margin-bottom: 20px;
-    font-size: 14px;
-  }
-
-  .post-header {
+.post-header {
     margin-bottom: 24px;
   }
   .post-header h1 {
@@ -148,7 +129,7 @@ const hasToc = toc.length > 0
       display: block;
       position: fixed;
       top: 64px;
-      left: calc(50% + 380px);
+      left: max(calc(50% + 380px), calc(100vw - 200px));
       width: 180px;
       max-height: calc(100vh - 80px);
       overflow-y: auto;

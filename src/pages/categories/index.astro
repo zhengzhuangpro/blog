@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { siteConfig } from '../../config'
 import { getCollection } from 'astro:content'
 
 const allPosts = await getCollection('posts')
@@ -9,24 +10,14 @@ const categories = [
 ].sort()
 ---
 
-<BaseLayout title="分类 - 郑壮 blog">
-  <a href="/" class="back" id="backBtn">&larr; 返回</a>
-  <script>
-    const btn = document.getElementById('backBtn')
-    if (btn) {
-      const ref = document.referrer
-      if (ref && new URL(ref).origin === location.origin) {
-        btn.href = ref
-      }
-    }
-  </script>
+<BaseLayout title={`分类 - ${siteConfig.title}`}>
   <h1 style="font-size:1.3em; margin-bottom:20px;">分类</h1>
   <div class="cat-list">
     {
       categories.map((cat) => {
         const count = posts.filter((p) => p.data.category === cat).length
         return (
-          <a href={`/categories/${cat}`} class="cat-item">
+          <a href={`/categories/${encodeURIComponent(cat)}`} class="cat-item">
             <span class="cat-name">{cat}</span>
             <span class="cat-count">{count}</span>
           </a>
