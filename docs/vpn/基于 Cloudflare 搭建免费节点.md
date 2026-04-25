@@ -69,3 +69,24 @@ fork到我们自己的仓库
 ![image.png](https://img.zhengz.cc/PicGo/20260425172928294.png)  
 
 接着把上方的节点链接格式或者自适应订阅地址，导入到你的代理软件里，他支持 VLESS、Trojan 等主流协议，深度集成加密传输。
+
+
+## **优选订阅地址：**
+
+Cm.Soso.Edu.Kg
+
+Sub.Cmliussss.Net
+ 
+Owo.O00o.Ooo
+
+**PROXYIP 订阅:**
+
+ProxyIP.US.CMLiussss.Net
+
+ProxyIP.SG.CMLiussss.Net
+
+ProxyIP.JP.CMLiussss.Net
+
+**圈x代理软件的导入说明：**
+
+**不能直接导入的话可以使用节点转换工具：https://suburl.v1.mk/
