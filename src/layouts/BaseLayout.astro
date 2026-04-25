@@ -1,10 +1,12 @@
 ---
+import { siteConfig } from '../config'
+
 interface Props {
   title: string
   description?: string
 }
 
-const { title, description = '记录我生活的点点积极' } = Astro.props
+const { title, description = siteConfig.description } = Astro.props
 ---
 
 <!doctype html>
@@ -16,23 +18,36 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://zhengz.cc/blog/favicon.ico" />
+    <meta property="og:image" content={siteConfig.ogImage} />
     <meta property="og:type" content="website" />
     <title>{title}</title>
+    <script is:inline>
+      ;(function () {
+        var pref = localStorage.getItem('theme') || 'system'
+        var isDark =
+          pref === 'dark' ||
+          (pref === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.setAttribute(
+          'data-theme',
+          isDark ? 'dark' : 'light'
+        )
+        document.documentElement.setAttribute('data-theme-pref', pref)
+      })()
+    </script>
   </head>
   <body>
     <nav class="nav">
       <div class="nav-inner">
-        <a href="/" class="nav-title">郑壮 blog</a>
+        <a href="/" class="nav-title">{siteConfig.title}</a>
         <div class="nav-links">
-          <a href="/">首页</a>
-          <a href="/categories">分类</a>
-          <a
-            href="https://github.com/zhengzhuangpro"
-            target="_blank"
-            rel="noopener">GitHub</a
-          >
-          <a href="https://zhengz.cc" rel="noopener">主页</a>
+          {siteConfig.nav.map((item) => (
+            item.external ? (
+              <a href={item.href} target="_blank" rel="noopener">{item.label}</a>
+            ) : (
+              <a href={item.href}>{item.label}</a>
+            )
+          ))}
           <button class="theme-btn" id="theme-btn" aria-label="切换主题">
             <svg
               class="theme-icon theme-icon-light"
@@ -125,7 +140,7 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
     </main>
     <footer class="footer">
       <p>
-        &copy; {new Date().getFullYear()} 郑壮 blog. All rights reserved.
+        {siteConfig.footer.replace('{year}', String(new Date().getFullYear())).replace('{title}', siteConfig.title)}
       </p>
     </footer>
     <div class="lightbox-overlay" id="lightbox">
@@ -196,7 +211,6 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
   }
 
   .nav {
-    border-bottom: 1px solid var(--border);
     background: var(--bg);
     position: sticky;
     top: 0;
@@ -562,8 +576,6 @@ const { title, description = '记录我生活的点点积极' } = Astro.props
       )
       document.documentElement.setAttribute('data-theme-pref', p)
     }
-
-    apply(pref)
 
     document.addEventListener('DOMContentLoaded', function () {
       var btn = document.getElementById('theme-btn')

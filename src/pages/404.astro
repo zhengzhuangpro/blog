@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { siteConfig } from '../config'
+---
+
+<BaseLayout title={`404 - ${siteConfig.title}`}>
+  <div class="not-found">
+    <h1>404</h1>
+    <p>页面不存在</p>
+    <a href="/">← 返回首页</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 80px 0;
+  }
+  .not-found h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+  }
+  .not-found p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+</style>
