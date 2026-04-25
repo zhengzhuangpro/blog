@@ -60,7 +60,7 @@ fork到我们自己的仓库
 
 设置绑定一个域名或者二级域名  
 
-![image.png](https://img.zhengz.cc/PicGo/20260425172800858.png)
+![image.png](https://img.zhengz.cc/PicGo/20260425175118976.png)
 
 ### 第七步
 
