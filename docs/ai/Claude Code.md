@@ -1,7 +1,7 @@
 ---
 title: Claude Code 安装指南（Mac）
 category: ai
-date: 2026-04-17
+pubDate: 2026-04-17
 ---
 
 Claude Code 对于中国大陆用户，直接使用面临网络与账号双重门槛。但可以通过本地部署 + 国产大模型兼容层（GLM/DeepSeek）方案，实现无障碍安装使用。

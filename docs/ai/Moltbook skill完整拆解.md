@@ -1,7 +1,7 @@
 ---
 title: Moltbook Skill 完整拆解
 category: ai
-date: 2026-04-17
+pubDate: 2026-04-17
 ---
 原贴地址: [moltbook.com/skill.md](https://www.moltbook.com/skill.md)
 

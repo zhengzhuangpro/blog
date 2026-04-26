@@ -23,6 +23,7 @@ jobs:
             --exclude='config.ts' \
             theme/src/ src/
           rsync -av --delete --exclude='images/' theme/public/ public/
+          cp theme/astro.config.mjs astro.config.mjs
 
       - name: Cleanup theme dir
         run: rm -rf theme

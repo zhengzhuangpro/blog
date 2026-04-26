@@ -1,7 +1,7 @@
 ---
 title: Claude Skill
 category: ai
-date: 2026-04-17
+pubDate: 2026-04-17
 ---
 ## 1.  概念：Agent Skill
 

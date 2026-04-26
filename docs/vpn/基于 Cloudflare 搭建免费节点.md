@@ -1,7 +1,7 @@
 ---
 title: 基于 Cloudflare 搭建免费节点
 category: vpn
-date: 2026-04-25
+pubDate: 2026-04-25
 ---
 
 如果你在找一种真正`长期可用`的免费节点方案，那么2026年，这套基于 Cloudflare 的搭建方式，可能是目前最值得尝试的一种选择

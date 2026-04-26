@@ -1,7 +1,7 @@
 ---
 title: Obsidian AI Agent 配置指南：Claudian + Obsidian Skills
 category: ai
-date: 2026-01-20
+pubDate: 2026-01-20
 ---
 
 ## 1. 核心组件
