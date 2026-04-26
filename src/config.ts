@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: '郑壮 blog',
   description: '记录我生活的点点积极',
-  site: 'https://example.com',
+  site: 'https://blog.zhengz.cc',
   ogImage: '/favicon.ico',
   logo: 'https://img.zhengz.cc/PicGo/20260424095449699.png',
   author: 'zhengzhuang',
