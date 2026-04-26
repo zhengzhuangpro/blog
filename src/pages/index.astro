@@ -7,8 +7,8 @@ const allPosts = await getCollection('posts')
 const posts = allPosts
   .filter((post) => !post.id.endsWith('README.md'))
   .sort((a, b) => {
-    const da = a.data.date || a.data.pubDate || new Date(0)
-    const db = b.data.date || b.data.pubDate || new Date(0)
+    const da = a.data.pubDate || new Date(0)
+    const db = b.data.pubDate || new Date(0)
     return db.getTime() - da.getTime()
   })
 
@@ -44,11 +44,9 @@ const categories = [
             {post.data.category && (
               <span class="cat-tag">{post.data.category}</span>
             )}
-            {(post.data.date || post.data.pubDate) && (
+            {post.data.pubDate && (
               <span>
-                {(post.data.date || post.data.pubDate)!.toLocaleDateString(
-                  'zh-CN'
-                )}
+                {post.data.pubDate.toLocaleDateString('zh-CN')}
               </span>
             )}
           </div>

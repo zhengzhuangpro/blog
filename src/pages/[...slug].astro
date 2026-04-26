@@ -15,6 +15,6 @@ const { Content, headings } = await render(post);
 const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 ---
 
-<PostLayout title={post.data.title} description={post.data.description} category={post.data.category} date={post.data.date || post.data.pubDate} toc={toc}>
+<PostLayout title={post.data.title} description={post.data.description} category={post.data.category} date={post.data.pubDate} toc={toc}>
   <Content />
 </PostLayout>
