@@ -1,7 +1,7 @@
 ---
 title: Ai 开发新秩序 - Ai全栈应用开发技术栈 推荐
 category: ai
-pubDate: 2025-09-17
+pubDate: 2026-05-17
 ---
 来源： [Ai 开发新秩序 - Ai全栈应用开发技术栈 推荐](https://aitntnews.com/newDetail.html?newId=9448)
 
