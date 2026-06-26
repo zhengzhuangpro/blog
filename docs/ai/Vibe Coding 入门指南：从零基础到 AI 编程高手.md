@@ -7,7 +7,7 @@ pubDate: 2026-06-26
 
 > 从安装环境到 Claude Code Auto Mode，零基础掌握 AI 编程
 
-![](https://img.zhengz.cc/PicGo/20260626093520484.png)
+![](https://img.zhengz.cc/pic-go/20260626110413576.png)
 
 ---
 
