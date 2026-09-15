@@ -127,6 +127,31 @@
 
 回滚：`git revert` 前端提交即回到 glob loader，`docs/` 归档仍在原处。
 
+## 附录 A：slug 格式规范（后端实现依据）
+
+- 结构：`分类/名称`，即原 `docs/` 相对路径去掉 `.md`（如 `ai/claude-code`）
+- ASCII 统一小写；空格 → `-`；标点（`：+，。` 等）直接删除；中文原样保留
+- 禁止：大写字母、空格、`? # % & + . , :`、首尾 `/`、连续 `//`
+- 校验正则：`^[a-z0-9一-龥][a-z0-9一-龥-]*(/[a-z0-9一-龥][a-z0-9一-龥-]*)*$`
+- 全局唯一（建议 DB 唯一索引）、非空、长度 ≤ 100
+
+存量 12 篇回填清单（与线上 URL 逐一对应，含 `---` / `--` 连字符均须原样照抄）：
+
+| 文章 | slug |
+|---|---|
+| Ai 开发新秩序 | `ai/ai-开发新秩序---ai全栈应用开发技术栈-推荐` |
+| Claude Code | `ai/claude-code` |
+| Claude Skill | `ai/claude-skill` |
+| Moltbook skill完整拆解 | `ai/moltbook-skill完整拆解` |
+| Obsidian AI Agent 配置指南 | `ai/obsidian-ai-agent-配置指南claudian--obsidian-skills` |
+| Vibe Coding 入门指南 | `ai/vibe-coding-入门指南从零基础到-ai-编程高手` |
+| 从零开始构建 RAG 知识库系统 | `ai/从零开始构建-rag-知识库系统go--postgresql--pgvector-实战` |
+| 当 CLI 工具成为 AI Agent 的手和脚 | `ai/当-cli-工具成为-ai-agent-的手和脚` |
+| 零成本打造专业收件域名邮箱 | `ai/零成本打造专业收件域名邮箱cloudflare--gmail-终极配置保姆级全攻略` |
+| 基于 Cloudflare 搭建免费节点 | `vpn/基于-cloudflare-搭建免费节点` |
+| 你的剪贴板，该有个好记性。 | `website/你的剪贴板该有个好记性` |
+| 我用超级马里奥的风格，做了一个个人主页 | `website/我用超级马里奥的风格做了一个个人主页` |
+
 ## 8. 范围外（本次不做）
 
 - 封面图 `coverUrl` 的映射与展示
