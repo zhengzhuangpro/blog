@@ -9,10 +9,10 @@ This is a personal Chinese-language tech blog (https://blog.zhengz.cc) built wit
 ## Commands
 
 ```bash
-pnpm dev          # Start dev server
-pnpm build        # Build for production (outputs to dist/)
-pnpm preview      # Build + local Cloudflare Workers preview via wrangler
-pnpm deploy       # Build + deploy to Cloudflare Workers
+bun dev           # Start dev server
+bun run build     # Build for production (outputs to dist/)
+bun run preview   # Build + local Cloudflare Workers preview via wrangler
+bun run deploy    # Build + deploy to Cloudflare Workers
 ```
 
 ## Architecture

@@ -20,7 +20,8 @@ From here you can find all my blog links
 
 ### 包管理
 
-- [pnpm](https://github.com/pnpm/pnpm) - 我正在用的
+- [bun](https://github.com/oven-sh/bun) - 我正在用的
+- [pnpm](https://github.com/pnpm/pnpm)
 - [npm](https://github.com/npm/cli)
 - [yarn](https://github.com/yarnpkg/yarn)
 - [pub](https://pub.flutter-io.cn)
