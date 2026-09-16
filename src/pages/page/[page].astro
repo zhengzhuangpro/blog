@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { siteConfig } from '../../config'
+import { getCollection } from 'astro:content'
+import PostList from '../../components/PostList.astro'
+import Pagination from '../../components/Pagination.astro'
+import { sortPosts, slicePage, pageCount } from '../../lib/posts'
+
+// 首页分页：第 1 页就是 /，这里只生成 /page/2 起，避免与首页内容重复
+export async function getStaticPaths() {
+  const posts = sortPosts(await getCollection('posts'))
+  const total = pageCount(posts.length)
+  return Array.from({ length: total - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: { posts },
+  }))
+}
+
+const { posts } = Astro.props
+const pageNum = Number(Astro.params.page)
+---
+
+<BaseLayout title={`第 ${pageNum} 页 - ${siteConfig.title}`}>
+  <PostList posts={slicePage(posts, pageNum)} showCategory />
+  <Pagination
+    currentPage={pageNum}
+    totalPages={pageCount(posts.length)}
+    hrefFor={(n) => (n === 1 ? '/' : `/page/${n}`)}
+  />
+</BaseLayout>

@@ -12,6 +12,9 @@ import { fetchAllArticles, type Article } from '../lib/blog-api';
 /** 会让静态路由出问题的字符（specs/2026-09-15 附录 A：slug 禁止 ? # % & 与空白） */
 const RESERVED_CHARS = /[?#%&\s]/;
 
+/** 与静态路由冲突的保留前缀：/page/N 是首页分页，/categories/* 是分类页 */
+const RESERVED_PREFIXES = ['page/', 'categories/'];
+
 class LoaderError extends Error {}
 
 function validateSlug(article: Article, slug: string): void {
@@ -23,6 +26,10 @@ function validateSlug(article: Article, slug: string): void {
   }
   if (slug.startsWith('/') || slug.endsWith('/') || slug.includes('//')) {
     throw new LoaderError(`文章「${article.title}」slug 首尾或连续斜杠非法: ${slug}`);
+  }
+  const reserved = RESERVED_PREFIXES.find((p) => slug.startsWith(p));
+  if (reserved) {
+    throw new LoaderError(`文章「${article.title}」slug 使用保留前缀「${reserved}」（与分页/分类静态路由冲突）: ${slug}`);
   }
 }
 

@@ -112,6 +112,15 @@ describe('blogApiLoader', () => {
     await expect(blogApiLoader().load(ctx)).rejects.toThrow('缺少 slug');
   });
 
+  test.each([
+    ['page/ 前缀与首页分页冲突', 'page/2'],
+    ['categories/ 前缀与分类页冲突', 'categories/ai'],
+  ])('slug 保留前缀（%s）：抛错', async (_label, slug) => {
+    mockApi([article({ id: '1', slug: slug as string })]);
+    const { ctx } = makeContext();
+    await expect(blogApiLoader().load(ctx)).rejects.toThrow('保留前缀');
+  });
+
   test('空列表：抛错（防空站上线）', async () => {
     mockApi([]);
     const { ctx } = makeContext();

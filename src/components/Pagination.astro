@@ -1,0 +1,93 @@
+---
+/**
+ * 分页导航（首页 /page/N 与分类页 /categories/<cat>/N 共用）
+ *
+ * 第 1 页的链接由调用方通过 hrefFor 决定（首页是 /，分类页是 /categories/<cat>）
+ */
+interface Props {
+  currentPage: number
+  totalPages: number
+  hrefFor: (page: number) => string
+}
+
+const { currentPage, totalPages, hrefFor } = Astro.props
+
+// 页码多于 7 个时只展示首末页与当前页附近的窗口，中间用省略号
+const pages: Array<number | '…'> = []
+if (totalPages <= 7) {
+  for (let i = 1; i <= totalPages; i++) pages.push(i)
+} else {
+  pages.push(1)
+  if (currentPage > 3) pages.push('…')
+  for (
+    let i = Math.max(2, currentPage - 1);
+    i <= Math.min(totalPages - 1, currentPage + 1);
+    i++
+  ) {
+    pages.push(i)
+  }
+  if (currentPage < totalPages - 2) pages.push('…')
+  pages.push(totalPages)
+}
+---
+
+{
+  totalPages > 1 && (
+    <nav class="pagination" aria-label="分页">
+      {currentPage > 1 && (
+        <a href={hrefFor(currentPage - 1)} class="page-nav">
+          ← 上一页
+        </a>
+      )}
+      {pages.map((p) =>
+        p === '…' ? (
+          <span class="page-ellipsis">…</span>
+        ) : p === currentPage ? (
+          <span class="page-current" aria-current="page">
+            {p}
+          </span>
+        ) : (
+          <a href={hrefFor(p)} class="page-nav">
+            {p}
+          </a>
+        ),
+      )}
+      {currentPage < totalPages && (
+        <a href={hrefFor(currentPage + 1)} class="page-nav">
+          下一页 →
+        </a>
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 28px;
+    font-size: 13px;
+  }
+  .page-nav {
+    color: var(--text-muted);
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    transition: all 0.15s;
+  }
+  .page-nav:hover {
+    background: var(--border);
+    color: var(--accent);
+  }
+  .page-current {
+    color: var(--accent);
+    font-weight: 600;
+    padding: 4px 10px;
+  }
+  .page-ellipsis {
+    color: var(--text-muted);
+    padding: 4px 2px;
+  }
+</style>

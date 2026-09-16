@@ -2,84 +2,42 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { siteConfig } from '../../config'
 import { getCollection } from 'astro:content'
+import PostList from '../../components/PostList.astro'
+import Pagination from '../../components/Pagination.astro'
+import { sortPosts, slicePage, pageCount } from '../../lib/posts'
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts')
-  const posts = allPosts
   const categories = [
-    ...new Set(posts.map((p) => p.data.category).filter(Boolean))
+    ...new Set(allPosts.map((p) => p.data.category).filter(Boolean))
   ]
   return categories.map((cat) => ({
     params: { category: cat },
     props: {
       category: cat,
-      posts: posts.filter((p) => p.data.category === cat)
+      posts: sortPosts(allPosts.filter((p) => p.data.category === cat))
     }
   }))
 }
 
 const { category, posts } = Astro.props
-const sorted = posts.sort((a, b) => {
-  const da = a.data.date || a.data.pubDate || new Date(0)
-  const db = b.data.date || b.data.pubDate || new Date(0)
-  return db.getTime() - da.getTime()
-})
+const hrefFor = (n: number) =>
+  n === 1
+    ? `/categories/${encodeURIComponent(category)}`
+    : `/categories/${encodeURIComponent(category)}/${n}`
 ---
 
 <BaseLayout title={`${category} - ${siteConfig.title}`}>
   <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
     <h1 style="font-size:1.3em;">{category}</h1>
     <span style="color:var(--text-muted); font-size:13px;"
-      >{sorted.length} 篇</span
+      >{posts.length} 篇</span
     >
   </div>
-  <div class="posts">
-    {
-      sorted.map((post) => (
-        <a href={`/${post.id}`} class="post-card">
-          <span class="post-card-title">{post.data.title}</span>
-          {(post.data.date || post.data.pubDate) && (
-            <span class="post-card-date">
-              {(post.data.date || post.data.pubDate)!.toLocaleDateString(
-                'zh-CN'
-              )}
-            </span>
-          )}
-        </a>
-      ))
-    }
-  </div>
+  <PostList posts={slicePage(posts, 1)} />
+  <Pagination
+    currentPage={1}
+    totalPages={pageCount(posts.length)}
+    {hrefFor}
+  />
 </BaseLayout>
-
-<style>
-  .posts {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .post-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 10px 12px;
-    border-radius: var(--radius);
-    transition: background 0.15s;
-  }
-  .post-card:hover {
-    background: var(--border);
-  }
-  .post-card-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .post-card:hover .post-card-title {
-    color: var(--accent);
-  }
-  .post-card-date {
-    color: var(--text-muted);
-    font-size: 12px;
-    flex-shrink: 0;
-    margin-left: 16px;
-  }
-</style>

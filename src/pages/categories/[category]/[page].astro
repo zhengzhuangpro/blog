@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import { siteConfig } from '../../../config'
+import { getCollection } from 'astro:content'
+import PostList from '../../../components/PostList.astro'
+import Pagination from '../../../components/Pagination.astro'
+import { sortPosts, slicePage, pageCount } from '../../../lib/posts'
+
+// 分类分页：第 1 页就是 /categories/<category>，这里只生成 /categories/<category>/2 起
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts')
+  const categories = [
+    ...new Set(allPosts.map((p) => p.data.category).filter(Boolean))
+  ]
+  return categories.flatMap((cat) => {
+    const catPosts = sortPosts(allPosts.filter((p) => p.data.category === cat))
+    const total = pageCount(catPosts.length)
+    return Array.from({ length: total - 1 }, (_, i) => ({
+      params: { category: cat, page: String(i + 2) },
+      props: { category: cat, posts: catPosts }
+    }))
+  })
+}
+
+const { category, posts } = Astro.props
+const pageNum = Number(Astro.params.page)
+const hrefFor = (n: number) =>
+  n === 1
+    ? `/categories/${encodeURIComponent(category)}`
+    : `/categories/${encodeURIComponent(category)}/${n}`
+---
+
+<BaseLayout title={`${category} - 第 ${pageNum} 页 - ${siteConfig.title}`}>
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+    <h1 style="font-size:1.3em;">{category}</h1>
+    <span style="color:var(--text-muted); font-size:13px;"
+      >{posts.length} 篇</span
+    >
+  </div>
+  <PostList posts={slicePage(posts, pageNum)} />
+  <Pagination
+    currentPage={pageNum}
+    totalPages={pageCount(posts.length)}
+    {hrefFor}
+  />
+</BaseLayout>

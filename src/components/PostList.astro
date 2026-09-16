@@ -1,0 +1,93 @@
+---
+/**
+ * 文章列表卡片（样式沿用原 index.astro 与 categories/[category].astro 的内联实现）
+ *
+ * showCategory：首页卡片（标题 + 分类徽标 + 日期）；否则分类页卡片（标题 + 日期）
+ */
+import type { Post } from '../lib/posts'
+
+interface Props {
+  posts: Post[]
+  showCategory?: boolean
+}
+
+const { posts, showCategory = false } = Astro.props
+---
+
+<div class="posts">
+  {
+    posts.map((post) => (
+      <a href={`/${post.id}`} class="post-card">
+        {showCategory ? (
+          <>
+            <div class="post-card-title">{post.data.title}</div>
+            <div class="post-card-meta">
+              {post.data.category && (
+                <span class="cat-tag">{post.data.category}</span>
+              )}
+              {post.data.pubDate && (
+                <span>{post.data.pubDate.toLocaleDateString('zh-CN')}</span>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <span class="post-card-title">{post.data.title}</span>
+            {post.data.pubDate && (
+              <span class="post-card-date">
+                {post.data.pubDate.toLocaleDateString('zh-CN')}
+              </span>
+            )}
+          </>
+        )}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .post-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    transition: background 0.15s;
+  }
+  .post-card:hover {
+    background: var(--border);
+  }
+  .post-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .post-card:hover .post-card-title {
+    color: var(--accent);
+  }
+  .post-card-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .cat-tag {
+    background: var(--border);
+    padding: 1px 8px;
+    border-radius: 8px;
+  }
+  .post-card-date {
+    color: var(--text-muted);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+</style>
