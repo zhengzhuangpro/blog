@@ -5,7 +5,6 @@ import { getCollection } from 'astro:content'
 
 const allPosts = await getCollection('posts')
 const posts = allPosts
-  .filter((post) => !post.id.endsWith('README.md'))
   .sort((a, b) => {
     const da = a.data.pubDate || new Date(0)
     const db = b.data.pubDate || new Date(0)
@@ -38,7 +37,7 @@ const categories = [
   <section class="posts">
     {
       posts.map((post) => (
-        <a href={`/${post.id.replace(/\.md$/, '')}`} class="post-card">
+        <a href={`/${post.id}`} class="post-card">
           <div class="post-card-title">{post.data.title}</div>
           <div class="post-card-meta">
             {post.data.category && (

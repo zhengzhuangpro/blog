@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test": "bun test",
     "preview": "astro build && wrangler dev",
     "deploy": "astro build && wrangler deploy"
   },

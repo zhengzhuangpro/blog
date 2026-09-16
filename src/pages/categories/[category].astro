@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts')
-  const posts = allPosts.filter((p) => !p.id.endsWith('README.md'))
+  const posts = allPosts
   const categories = [
     ...new Set(posts.map((p) => p.data.category).filter(Boolean))
   ]
@@ -36,7 +36,7 @@ const sorted = posts.sort((a, b) => {
   <div class="posts">
     {
       sorted.map((post) => (
-        <a href={`/${post.id.replace(/\.md$/, '')}`} class="post-card">
+        <a href={`/${post.id}`} class="post-card">
           <span class="post-card-title">{post.data.title}</span>
           {(post.data.date || post.data.pubDate) && (
             <span class="post-card-date">

@@ -1,9 +1,10 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { blogApiLoader } from './loaders/blog-api';
 
 const posts = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './docs' }),
+  loader: blogApiLoader(),
   schema: z.object({
+    slug: z.string(),
     title: z.string(),
     description: z.string().optional(),
     category: z.string().optional(),

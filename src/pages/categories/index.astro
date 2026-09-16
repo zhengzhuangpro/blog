@@ -4,7 +4,7 @@ import { siteConfig } from '../../config'
 import { getCollection } from 'astro:content'
 
 const allPosts = await getCollection('posts')
-const posts = allPosts.filter((p) => !p.id.endsWith('README.md'))
+const posts = allPosts
 const categories = [
   ...new Set(posts.map((p) => p.data.category).filter(Boolean))
 ].sort()
