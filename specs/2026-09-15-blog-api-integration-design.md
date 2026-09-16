@@ -54,7 +54,7 @@
 
 - `getApiBase(): string` — `process.env.BLOG_API_BASE ?? 'http://localhost:8080'`
 - `fetchAllArticles(): Promise<Article[]>` — 以 `page_size=50` 遍历分页直至累计达到 `total`；安全上限 100 页
-- 单页请求 `GET ${base}/api/blog/v1/articles?page=N&page_size=50`，10s 超时（AbortController）；网络错误或 HTTP ≥ 500 重试 1 次
+- 单页请求 `GET ${base}/api/blog/v1/articles?page=N&page_size=50&with_content=true`（构建需要正文，`with_content` 见接口修订文档），10s 超时（AbortController）；网络错误或 HTTP ≥ 500 重试 1 次
 - 响应解包：HTTP 200 且 `code === 0` 时取 `data`，否则抛出含 `code` / `message` 的错误
 - `Article` 类型按接口文档 `ArticleResponse` 定义；`id`、`userId` 均按 string 透传（snowflake 超 JS 安全整数）
 
@@ -99,6 +99,7 @@
 | HTTP 失败 / `code !== 0` | 构建终止，输出 `code` 与 `message` |
 | 空列表（`total = 0`） | 构建终止 — 防止后端故障时把空站部署上线 |
 | slug 缺失 / 含 URL 保留字符 / 重复 | 构建终止，打印涉事文章 `title` 与 `slug` |
+| 列表项缺 `contentMd`（`with_content` 未传或后端未实现） | 构建终止 — entry `body` 为空即渲染空文章，宁可在构建期暴露 |
 | 请求超时 | 10s 中止，重试 1 次，再失败即终止 |
 
 ## 6. 测试策略
@@ -155,7 +156,7 @@
 ## 8. 范围外（本次不做）
 
 - 封面图 `coverUrl` 的映射与展示
-- 发文 webhook / 自动部署 workflow
+- ~~发文 webhook / 自动部署 workflow~~（2026-09-16 已实施：`.github/workflows/deploy.yml`，后端发布成功后调 repository_dispatch 触发构建部署）
 - SSR、评论、阅读量等动态功能
 - `docs/` 归档目录的删除
 
