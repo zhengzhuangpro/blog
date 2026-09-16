@@ -1,0 +1,58 @@
+name: Deploy Blog
+
+# 自动部署：后端发布/修改文章成功后调 GitHub API 触发（也可在 Actions 页面手动触发）
+#
+# 后端调用方式（发布成功后执行一次，PAT 需要 Contents: write 权限）：
+#   curl -X POST https://api.github.com/repos/zhengzhuangpro/blog/dispatches \
+#     -H "Authorization: Bearer $GITHUB_PAT" \
+#     -H "Accept: application/vnd.github+json" \
+#     -d '{"event_type":"publish"}'
+#
+# 所需 repo secrets：
+#   BLOG_API_BASE          后端公网地址（如 https://api.example.com）
+#   CLOUDFLARE_API_TOKEN   Cloudflare API Token（用 "Edit Cloudflare Workers" 模板创建）
+#   CLOUDFLARE_ACCOUNT_ID  Cloudflare Account ID
+#
+# 注意：repository_dispatch 只会触发默认分支（main）上的 workflow 文件
+
+on:
+  workflow_dispatch: # 支持手动触发，便于先验证流水线
+  repository_dispatch:
+    types: [publish]
+
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: true # 连续发文时只部署最新一次
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查必要 secrets
+        env:
+          BLOG_API_BASE: ${{ secrets.BLOG_API_BASE }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          missing=0
+          [ -z "$BLOG_API_BASE" ] && echo "::error::缺少 secret BLOG_API_BASE（后端公网地址）" && missing=1
+          [ -z "$CLOUDFLARE_API_TOKEN" ] && echo "::error::缺少 secret CLOUDFLARE_API_TOKEN" && missing=1
+          [ -z "$CLOUDFLARE_ACCOUNT_ID" ] && echo "::error::缺少 secret CLOUDFLARE_ACCOUNT_ID" && missing=1
+          exit $missing
+
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install --frozen-lockfile
+
+      - name: 构建（从后端 API 拉取文章）
+        run: bun run build
+        env:
+          BLOG_API_BASE: ${{ secrets.BLOG_API_BASE }}
+
+      - name: 部署到 Cloudflare Workers
+        run: bunx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
